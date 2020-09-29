@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- bootstrap cdns -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/vs.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+
+        <link rel="stylesheet" href="./css/style.css" />
+
+        <!-- scripting -->
+        <script type="module" src="js/main.js"></script>
+        </head>
+    <body>
+        <header class="">
+            <nav class="navbar navbar-expand-md navbar-light">
+                <div class="navbar-brand navicon"></div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                      <li class="nav-item">
+                        <a class="nav-link" href="./index.html#top">Top</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html#profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html#table-of-contents">Contents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html#link">Link</a>
+                    </li>
+                </ul>
+                </div>
+            </nav>
+        </header>
+        <main class="container">
+
+          <h1>仮装大賞スコアボード風</h1>
+
+          <iframe src="./iframe-scoreboard.html"
+            style="width: 100%; height: 520px;"
+          ></iframe>
+          <a href="">view source code</a>
+      <section>
+        <h2>動作</h2>
+        <p>得点加算ボタンを押すと得点が1点ずつ加算され、現在得点のランプが点灯します。</p>
+        <p>得点が15点を超えると、ボードの周りのランプがくるくる点灯し、合格を告げます。</p>
+        <h2>解説</h2>
+        <p>得点表示灯、合格表示灯ともflexbox関連のcssプロパティをうまく利用して作成しています。</p>
+        <h3>得点表示灯</h3>
+          <p><code>display: flex</code>を指定し、<code>flex-wrap: row-reverse</code>で折り返しを逆順で指定すると、下から上へ積まれるように要素が配置されます。</p>
+          <p>HTMLの要素としては、得点表示灯は1から順番に積まれているので、<code>$(`.score:nth-child(${score})`)</code>で目的の表示灯にアクセスできます。</p>
+          <p>点灯・消灯はcssのクラスを付与することで行っています。15点以上は付与するクラスを変えて赤色点灯にしています。</p>
+        <h3>合格表示灯</h3>
+        <img src="images/parts-scoreboard-img-01.png" style="float: left; margin-right: 2em;"/><p>合格表示灯と呼んでいますが正式名称は不明です。合格すると得点版の周りをぐるぐる点灯するネオンサインみたいなアレのことです。</p>
+        これも得点表示灯と同じようにflex-wrapの指定で工夫しています。
+        <p>合格表示灯は4つのdiv要素で構成されています。左辺のline1、下辺のline2、右辺のline3、上辺のline4です。<code>flex-wrap</code>指定を使い、
+          電球を表現するdiv要素が右回りに流れるように配置されるようにしています。</p>
+          <p>.line3とline.4に<code>flex-wrap: wrap-reverse</code>を指定しています。</p>
+        <h3>電球のアニメーション</h3>
+        <p>次に、電球がくるくる回るような表示はどのように実現すれば良いでしょうか。</p>
+        <p>もちろん電球そのものが動くわけではなく、一定時間点灯し、一定時間消灯する、というサイクルを繰り返しして表現しています。</p>
+        <p>しかし、一度に全ての電球が点灯し、一度に消灯すればただの点滅ですので、電球ごとに点灯消灯サイクルを少しずつずらして設定します。</p>
+        <p>今回は、電球の点灯消灯パターンはアニメーションフレームを使用し、電球6つを1セットとして開始時間を等間隔でずらすことによりぐるぐる電球点灯表示を行います。
+          なので電球の総数は6の倍数になっています。また、各電球のアニメーション開始をずらした時間の合計とアニメーションが1周する時間を同じにすることでスムーズに電球が回転しているように見えます。</p>
+        <pre><code>
+  /* 電球のスタイル off時 */
+  .light{
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+      background-color: #444444;
+      transition: all 0.08s ease;
+  }
+  /* 電球のスタイル on時*/
+  .on {
+      animation-name: blink-light;
+      animation-duration: 180ms;
+      animation-iteration-count: infinite;
+  }
+  /* 電球のアニメーション設定 */
+  @keyframes blink-light{
+    0% {
+      /* 消灯 */
+        background-color: #000000;
+        box-shadow: none;
+    }
+    90% {
+      /* 点灯 */
+        background-color: #FFFF00;
+        box-shadow: 0px 0px 5px 5px #ffff0080;
+    }
+  }
+  /* 各電球のアニメーション開始をずらす設定 1電球ごとに30msずつずらしている。*/
+  .light:nth-child(6n){
+      animation-delay: 0ms;
+  }
+  .light:nth-child(6n+1){
+      animation-delay: 30ms;
+  }
+  .light:nth-child(6n+2){
+      animation-delay: 60ms;
+  }
+  .light:nth-child(6n+3){
+      animation-delay: 90ms;
+  }
+  .light:nth-child(6n+4){
+      animation-delay: 120ms;
+  }
+  .light:nth-child(6n+5){
+      animation-delay: 150ms;
+  }
+      </code></pre>
+      </section>
+        </main>
+        <footer id="footer" class="d-flex justify-content-center align-items-center container-fluid">
+            <p>©copyrights haruyan-hopemucci.</p>
+        </footer>
+    </body>
+</html>

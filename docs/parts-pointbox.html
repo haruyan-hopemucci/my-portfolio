@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- bootstrap cdns -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/vs.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+
+        <link rel="stylesheet" href="./css/style.css" />
+
+        <!-- scripting -->
+        <script type="module" src="js/main.js"></script>
+        </head>
+    <body>
+        <header class="">
+            <nav class="navbar navbar-expand-md navbar-light">
+                <div class="navbar-brand navicon"></div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html#top">Top</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html#profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html#table-of-contents">Contents</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html#link">Link</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <main class="container">
+
+          <h1>罫線上にキャプションがあるステッカー</h1>
+
+          <iframe src="./iframe-pointboxdemo.html"
+            style="width: 100%; height: 600px;"
+          ></iframe>
+          <a href="">view source code</a>
+      <section>
+        <h2>解説</h2>
+        <p>このステッカーは、以下のようにコンテンツと各種表示部分で構成されています。</p>
+        <pre><code>
+div.pointbox                // ステッカーボックス本体
+├ div.content               // テキスト表示領域
+└ div.visual                // 装飾部分表示領域
+    ├ div.background        // 右下にちょっとずれた背景
+    ├ div.border-left       // 左側の逆コの字型のボーダー
+    ├ div.border-center     // 中央の下部だけ表示してあるボーダー。キャプションもこのボックスの中。
+    └ div.border-right      // 右側のコの字型のボーダー
+        </code></pre>
+        <h3>.pointboxの大きさ決定について</h3>
+        <p>visualクラス中の装飾要素は、pointboxのwidth, heightがしっかり決まらないとずれてしまいます。これは.pointboxの子要素をdiv.contentとdiv.visualに分け、
+            div.contentに先にテキストをレンダリングさせて親要素としてのwidth, heightを確定させるようにしています。</p>
+        <h3>装飾要素の調整</h3>
+        <p>
+            背景色をボックスより少し右下にずらす細工を行っています。div.visualのpositionにstatic以外の要素を指定すれば子要素のdiv.backgroundは<code>position: abcolute</code>で
+            div.visualからの絶対座標で位置を決定することができます。
+        </p>
+        <p>ボックスのborderについては、ボックス自体を横3つに分離させます。両端はコの字型にborderを設定しますが、中央のボックスはbottomのみにborderを設定します。
+            また、border-topを指定しない代わりにキャプションとなる文字列を入力しておけばtopの罫線の上に文字が書かれているような表現が可能になります。
+            両側のボックスのborder-topの位置指定は、キャプションとなる文字フォントのベースラインに依存するので、margin-topを細かく調整する必要があると思われます。
+        </p>
+        <p>詳しくはsourceディレクトリのscssファイルを見ていただければと思います。</p>
+      </section>
+        </main>
+        <footer id="footer" class="d-flex justify-content-center align-items-center container-fluid">
+            <p>©copyrights haruyan-hopemucci.</p>
+        </footer>
+    </body>
+</html>
