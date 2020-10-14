@@ -1,0 +1,35 @@
+.container{
+  width: 1280px;
+  margin: auto auto;
+}
+
+#auto-load-contents{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  li{
+    list-style: none;
+    width: 630px;
+    height: 250px;
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow: hidden;
+    img{
+      display: inline-block;
+      width: 250px;
+      height: 250px;
+    }
+    p{
+      width: 360px;
+      word-break: break-all;
+      padding: 0 0.5em;
+      &.title{
+        font-size: 1.5em;
+        font-weight: bold;
+        }
+    }
+  }
+}

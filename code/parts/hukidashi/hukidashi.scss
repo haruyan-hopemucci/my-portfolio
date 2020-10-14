@@ -1,0 +1,40 @@
+.pointbox{
+    display: block;
+    position: relative;
+    margin: 10px;
+    .content{
+        padding-top: 2em;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+    .visual{
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        .border-left{
+            // 中央以外のボーダーは、中央の要素をピッタリセンターにするため同じ値で100%を指定。
+            width: 100%;
+            border-bottom: 2px solid #444444;
+            margin-top: 1em;
+        }
+        .border-right{
+            width: 100%;
+            border-bottom: 2px solid #444444;
+            margin-top: 1em;
+        }
+        .border-center{
+            text-align: center;
+            white-space: nowrap;
+            // 2文字分の横幅を確保
+            width: 2em;
+            border-bottom: 2px solid #444444;
+            // transform-origin（回転の起点）を右端、下端からborderの太さ分上にずらした点を設定
+            transform-origin: right calc(100% - 2px);
+            // x方向を1/√2 倍に縮めて、45度反時計回りに回転させる。
+            transform: rotate(-45deg)  scalex(0.7) ;
+        }
+    }
+}
