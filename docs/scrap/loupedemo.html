@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <script src="./js/html2canvas.js" ></script> -->
+  <title>拡大鏡デモ</title>
+  <style>
+    html, body{
+      background-color: #FFFFFF;
+    }
+    table{
+      border: 1px solid #aaa;
+      background-color: white;
+    }
+    th{
+      font-size: 1.2rem;
+    }
+    tr:nth-of-type(2n+2){
+      background-color: #eee;
+    }
+    #loupe{
+      position: fixed; 
+      width: 800px;
+      height: 400px;
+      overflow: hidden;
+      right: 0;
+      bottom: 0;
+      border: 2px solid #aaa;
+    }
+    #loupe-frame{
+      /* width: 1920px;
+      height: 1040px; */
+      transform: scale(2.0);
+      transform-origin: 0px 0px;
+      overflow: hidden;
+    }
+    #loupe img{
+      transform: scale(2);
+      transform-origin: 0px 0px;
+    }
+    /*
+    td:hover{
+      transform: scale(1.5);
+      transition: all 0.5s ease;
+    }
+    */
+  </style>
+</head>
+<body>
+  <table id="table-posts" border=1>
+    <thead>
+      <th>userid</th>
+      <th>id</th>
+      <th>title</th>
+      <th>body</th>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+  <div id="loupe">
+    <iframe id="loupe-frame" ></iframe>
+  </div>
+<template id="table-post-body">
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+
+</template>
+
+<script>
+  var url = "https://jsonplaceholder.typicode.com/posts";
+  var loupe = document.querySelector('#loupe');
+  var imgData;
+  fetch(url)
+  .then(response => response.json())
+  .then( data => {
+    data.forEach( (item, idx) => {
+      let template = document.querySelector('#table-post-body').content.cloneNode(true);
+      let tds = template.querySelectorAll('td');
+      tds[0].innerHTML = item.userId;
+      tds[1].innerHTML = item.id;
+      tds[2].innerHTML = item.title;
+      tds[3].innerHTML = item.body;
+      document.querySelector('#table-posts tbody').appendChild(template);
+    });
+    // loupe.appendChild(document.body.content.cloneNode(true));
+    // loupe.contentDocument.innerHTML = document.querySelector('table');
+    // html2canvas(document.body,{
+    //     onrendered: function(canvas){
+    //       imgData = canvas.toDataURL();
+    //       //aタグのhrefにキャプチャ画像のURLを設定
+    //       loupe.querySelector('img').src = imgData;
+    //     }
+    // });
+    /*
+    let element = document.querySelector('#table-posts');
+    html2canvas(element,{scale: 1,}).then(function(canvas) {
+      imgData = canvas.toDataURL();
+      loupe.querySelector('img').src = imgData;
+      loupe.style.display = "block";
+    });
+    */
+  });
+
+  // カーソルに追随してルーペフレームのウィンドウ表示領域を動かす
+  document.addEventListener('mousemove', (event) => {
+    // 実画面側の座標取得
+    let mx = event.pageX;
+    let my = event.pageY;
+    // console.log(mx,my);
+    // ループフレームのスクロール位置を設定。カーソル位置を2倍してclient領域のセンターへもっていく
+    loupe.scrollTop = (my*2 - loupe.clientHeight / 2 *1)*1;
+    loupe.scrollLeft = (mx*2 - loupe.clientWidth / 2 *1)*1;
+  });
+
+  // クリックするとループフレームにドキュメントをコピーする（暫定）
+  var iframe = document.querySelector('#loupe-frame').contentWindow;
+  document.addEventListener('click', (event) => {
+    // ループフレーム内部HTMLのサイズ指定。スクロールバー分を考慮して36px増やす。
+    document.querySelector('#loupe-frame').style.height = `${document.body.scrollHeight+36}px`;
+    document.querySelector('#loupe-frame').style.width = `${document.body.scrollWidth+36}px`;
+    // htmlを丸ごとコピー
+    iframe.document.head.innerHTML = document.head.innerHTML;
+    iframe.document.body.innerHTML = document.body.innerHTML;
+
+  })
+
+</script>
+
+</body>
+</html>
