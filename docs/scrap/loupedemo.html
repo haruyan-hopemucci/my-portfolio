@@ -116,17 +116,24 @@
     // ループフレームのスクロール位置を設定。カーソル位置を2倍してclient領域のセンターへもっていく
     loupe.scrollTop = (my*2 - loupe.clientHeight / 2 *1)*1;
     loupe.scrollLeft = (mx*2 - loupe.clientWidth / 2 *1)*1;
+    console.log(my, loupe.clientHeight, loupe.scrollTop);
   });
 
   // クリックするとループフレームにドキュメントをコピーする（暫定）
   var iframe = document.querySelector('#loupe-frame').contentWindow;
   document.addEventListener('click', (event) => {
-    // ループフレーム内部HTMLのサイズ指定。スクロールバー分を考慮して36px増やす。
-    document.querySelector('#loupe-frame').style.height = `${document.body.scrollHeight+36}px`;
-    document.querySelector('#loupe-frame').style.width = `${document.body.scrollWidth+36}px`;
+    // ループフレーム内部HTMLのサイズ指定。
+    document.querySelector('#loupe-frame').style.height = `${document.body.scrollHeight}px`;
+    // document.querySelector('#loupe-frame').style.height = `${document.body.scrollHeight+36}px`;
+    // document.querySelector('#loupe-frame').style.width = `${document.body.scrollWidth}px`;
+    document.querySelector('#loupe-frame').style.width = `${window.innerWidth}px`;
+    // htmlコピー前にルーペフレームを非表示にする（映り込み防止）
+    document.querySelector('#loupe').style.display = "none";
     // htmlを丸ごとコピー
     iframe.document.head.innerHTML = document.head.innerHTML;
     iframe.document.body.innerHTML = document.body.innerHTML;
+    // ルーペフレーム復帰
+    document.querySelector('#loupe').style.display = "block";
 
   })
 
