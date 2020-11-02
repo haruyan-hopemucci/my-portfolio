@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>拡大鏡デモ</title>
+  <style>
+    html, body{
+      background-color: #FFFFFF;
+    }
+    table{
+      border: 1px solid #aaa;
+      background-color: white;
+    }
+    th{
+      font-size: 1.2rem;
+    }
+    tr:nth-of-type(2n+2){
+      background-color: #eee;
+    }
+
+  </style>
+</head>
+<body>
+  <table id="table-posts" border=1>
+    <thead>
+      <th>userid</th>
+      <th>id</th>
+      <th>title</th>
+      <th>body</th>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+  <script src="./loupebox.js"></script>
+<template id="table-post-body">
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+
+</template>
+
+<script>
+  var url = "https://jsonplaceholder.typicode.com/posts";
+  var loupe = document.querySelector('#loupe');
+  var loupeBox = document.querySelector('#loupe-box');
+  var loupeToolbar = document.querySelector('#loupe-toolbar');
+  var imgData;
+  fetch(url)
+  .then(response => response.json())
+  .then( data => {
+    data.forEach( (item, idx) => {
+      let template = document.querySelector('#table-post-body').content.cloneNode(true);
+      let tds = template.querySelectorAll('td');
+      tds[0].innerHTML = item.userId;
+      tds[1].innerHTML = item.id;
+      tds[2].innerHTML = item.title;
+      tds[3].innerHTML = item.body;
+      document.querySelector('#table-posts tbody').appendChild(template);
+    });
+  });
+
+ 
+</script>
+
+</body>
+</html>
