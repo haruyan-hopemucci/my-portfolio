@@ -10,7 +10,27 @@
  * 
  * MIT License.
  */
-window.addEventListener('load', function(event){
+
+ /**
+  * TODO:
+  * - disposeしたら各種イベントをremoveする処理も追加する。
+  * - class化したほうが良い？
+  */
+var __loupeBoxSettings;
+function LoupeBox(settings){
+  __loupeBoxSettings = {
+    pointer: settings.pointer,
+    scale: settings.scale ? settings.scale : 2.0,
+    width: settings.width ? settings.width : 800,
+    height: settings.height ? settings.height: 400,
+  }
+  __loupeInitImpl();
+  return {
+    dispose : () => { document.querySelector("#loupe-box").remove(); }
+  };
+}
+
+function __loupeInitImpl(){
   let loupebox_template = `
     <div id="loupe-toolbar">
       <button class="loupe-a-controll">shrink</button>
@@ -27,8 +47,8 @@ window.addEventListener('load', function(event){
   let loupebox_style = `
   #loupe-box{
     position: fixed; 
-    width: 800px;
-    height: 400px;
+    width: ${__loupeBoxSettings.width}px;
+    height: ${__loupeBoxSettings.height}px;
     right: 0;
     bottom: 0;
     
@@ -51,7 +71,7 @@ window.addEventListener('load', function(event){
     border: 2px solid #aaa;
   }
   #loupe-frame{
-    transform: scale(2.0);
+    transform: scale(${__loupeBoxSettings.scale});
     transform-origin: 0px 0px;
     overflow: hidden;
     pointer-events: none;
@@ -91,19 +111,22 @@ window.addEventListener('load', function(event){
 
     // カーソルに追随してルーペフレームのウィンドウ表示領域を動かす
     document.addEventListener('mousemove', (event) => {
+      if(__loupeBoxSettings.pointer == false){
+        return;
+      }
       // 実画面側の座標取得
       let mx = event.pageX;
       let my = event.pageY;
       // console.log(mx,my);
       // ループフレームのスクロール位置を設定。カーソル位置を2倍してclient領域のセンターへもっていく
-      loupe.scrollTop = (my*2 - loupe.clientHeight / 2 *1)*1;
-      loupe.scrollLeft = (mx*2 - loupe.clientWidth / 2 *1)*1;
+      loupe.scrollTop = (my*__loupeBoxSettings.scale - loupe.clientHeight / 2 *1)*1;
+      loupe.scrollLeft = (mx*__loupeBoxSettings.scale - loupe.clientWidth / 2 *1)*1;
       // console.log(my, loupe.clientHeight, loupe.scrollTop);
     });
   
     // クリックするとループフレームにドキュメントをコピーする（暫定）
     var iframe = document.querySelector('#loupe-frame').contentWindow;
-    document.addEventListener('click', (event) => {
+    var __loupeBox__document__click = (event) => {
       // ループフレーム内部HTMLのサイズ指定。
       document.querySelector('#loupe-frame').style.height = `${document.body.scrollHeight}px`;
       // document.querySelector('#loupe-frame').style.height = `${document.body.scrollHeight+36}px`;
@@ -120,8 +143,8 @@ window.addEventListener('load', function(event){
       // 初期ウィンドウ非表示
       document.querySelector('#loupe-init').style.display = "none";
   
-    })
-  
+    };
+    document.addEventListener('click',__loupeBox__document__click);
     // ツールバーボタン ルーペ自体の折り畳み
     document.querySelector('.loupe-a-controll').addEventListener('click', (event) => {
       if(event.target.innerHTML === "shrink"){
@@ -157,7 +180,18 @@ window.addEventListener('load', function(event){
       loupeBox.style.top = `${loupeBox.offsetTop + (event.clientY - loupeToolbarMovingStartY)}px`;
       loupeToolbarMovingStartX = event.clientX;
       loupeToolbarMovingStartY = event.clientY;
-  
+
+      // window追随拡大の場合
+      if(__loupeBoxSettings.pointer == false){
+        let mx = loupeBox.offsetLeft + window.scrollX + loupe.clientWidth / 2;
+        let my = loupeBox.offsetTop - loupeToolbar.offsetHeight + window. scrollY + loupe.clientHeight / 2;
+        console.log(mx, my);
+        // console.log(mx,my);
+        // ループフレームのスクロール位置を設定。カーソル位置を2倍してclient領域のセンターへもっていく
+        loupe.scrollTop = (my*__loupeBoxSettings.scale - loupe.clientHeight / 2 *1)*1;
+        loupe.scrollLeft = (mx*__loupeBoxSettings.scale - loupe.clientWidth / 2 *1)*1;
+      }
+
     });
   
     document.addEventListener('mouseleave', (event) => {
@@ -176,7 +210,8 @@ window.addEventListener('load', function(event){
       loupeToolbarMoving = false;
     });
   
-});
+}
+
 // エリア拡大
 function loupeSizeUp(){
   let loupeBox = document.querySelector('#loupe-box');
