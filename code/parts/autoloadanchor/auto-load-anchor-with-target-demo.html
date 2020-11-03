@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>auto-load-anchor with target demo</title>
+  <style>
+    p{
+      height: 25vh;
+      width : 50%;
+      background-color: tomato;
+      color: white;
+      font-size: 16vh;
+      margin: 1vh 0;
+      transition: all 0.5s ease-in-out;
+    }
+    p.hidden{
+      visibility: hidden;
+      transform: translateY(25vh);
+      opacity: 0;
+    }
+    p.visible{
+      visibility: visible;
+      transform: translateY(0);
+      opacity: 1;
+    }
+    div.container{
+      display: flex;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>auto-load-anchor with target demo</h1>
+  <div class="container">
+    <p class="hidden">Alpha</p>
+    <p class="hidden">Bravo</p>
+    <p class="hidden">Charlie</p>
+    <p class="hidden">Delta</p>
+    <p class="hidden">Echo</p>
+    <p class="hidden">Foxtrot</p>
+    <p class="hidden">Golf</p>
+    <p class="hidden">Hotel</p>
+    <p class="hidden">India</p>
+    <p class="hidden">Juliett</p>
+    <p class="hidden">Kilo</p>
+    <p class="hidden">Lima</p>
+    <p class="hidden">Mike</p>
+    <p class="hidden">November</p>
+    <p class="hidden">Oscar</p>
+    <p class="hidden">Papa</p>
+    <p class="hidden">Quebec</p>
+    <p class="hidden">Romeo</p>
+    <p class="hidden">Sierra</p>
+    <p class="hidden">Tango</p>
+    <p class="hidden">Uniform</p>
+    <p class="hidden">Victor</p>
+    <p class="hidden">Whiskey</p>
+    <p class="hidden">X-lay</p>
+    <p class="hidden">Yankee</p>
+    <p class="hidden">Zulu</p>
+  </div>
+
+  <script type="module">
+    import AutoLoadAnchor from "./auto-load-anchor.js";
+    let obj = new AutoLoadAnchor({
+      anchorSelector: 'p',
+      func: (target) => {
+        target.classList.add('visible');
+      },
+      runImmediate: true,
+      anchorPoint: "bottom",
+      // gap: 200,
+    })
+  </script>
+</body>
+</html>

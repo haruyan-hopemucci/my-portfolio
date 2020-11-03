@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .topic{
+      width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      transition: all 1s ease;
+    }
+    .topic div{
+      margin: 24px;
+    }
+    .topic *{
+      transition: all 1s ease;
+    }
+    .topic.hidden{
+      opacity: 0;
+    }
+    .topic.hidden div.topic--img{
+      transform: translateX(-50vh);
+    }
+    .topic .topic--img{
+      transform: translateX(0);
+    }
+    .topic.hidden div.topic--text h2{
+      transform: translateX(50vh);
+    }
+    .topic .topic--text h2{
+      transform: translateX(0);
+    }
+    .topic.hidden div.topic--text p{
+      transform: translateY(50vh);
+    }
+    .topic .topic--text p{
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div style="width:100%; height: 100vh; background-color:#395">
+    トップページ
+  </div>
+  <p>最初は隠れているが領域の一番下までスクロールすると表示されるコンテンツ</p>
+  <div class="anchor" style="width: 100%; height: 50vh; background-color: #955;">
+    <div class="topic hidden">
+      <div class="topic--img">
+        <img src="https://picsum.photos/400/400">
+      </div>
+      <div class="topic--text">
+        <h2>深海魚</h2>
+        <p>深海魚は、深海に生息する魚類の総称。一般に、水深200mより深い海域に住む魚類を深海魚と呼んでいる。ただし、成長の過程で生息深度を変える種類や、餌を求めて大きな垂直移動を行う魚類も多く、「深海魚」という用語に明確な定義が存在するわけではない。</p>
+      </div>
+    </div>
+  </div>
+  <div class="anchor" style="width: 100%; height: 50vh; background-color: #559;">
+    <div class="topic hidden">
+      <div class="topic--img">
+        <img src="https://picsum.photos/400/400">
+      </div>
+      <div class="topic--text">
+        <h2>深海魚</h2>
+        <p>深海魚は、深海に生息する魚類の総称。一般に、水深200mより深い海域に住む魚類を深海魚と呼んでいる。ただし、成長の過程で生息深度を変える種類や、餌を求めて大きな垂直移動を行う魚類も多く、「深海魚」という用語に明確な定義が存在するわけではない。</p>
+      </div>
+    </div>
+  </div>
+  <div class="anchor" style="width: 100%; height: 50vh; background-color: #995;">
+    <div class="topic hidden">
+      <div class="topic--img">
+        <img src="https://picsum.photos/400/400">
+      </div>
+      <div class="topic--text">
+        <h2>深海魚</h2>
+        <p>深海魚は、深海に生息する魚類の総称。一般に、水深200mより深い海域に住む魚類を深海魚と呼んでいる。ただし、成長の過程で生息深度を変える種類や、餌を求めて大きな垂直移動を行う魚類も多く、「深海魚」という用語に明確な定義が存在するわけではない。</p>
+      </div>
+    </div>
+  </div>
+  <div class="anchor" style="width: 100%; height: 50vh; background-color: #599;">
+    <div class="topic hidden">
+      <div class="topic--img">
+        <img src="https://picsum.photos/400/400">
+      </div>
+      <div class="topic--text">
+        <h2>深海魚</h2>
+        <p>深海魚は、深海に生息する魚類の総称。一般に、水深200mより深い海域に住む魚類を深海魚と呼んでいる。ただし、成長の過程で生息深度を変える種類や、餌を求めて大きな垂直移動を行う魚類も多く、「深海魚」という用語に明確な定義が存在するわけではない。</p>
+      </div>
+    </div>
+  </div>
+  <div style="width:100%; height: 50vh; background-color:#395">
+    フッタ
+  </div>
+  <script type="module">
+    // 使い方
+    // 1.モジュールをimportする。
+    import AutoLoadAnchor from "./auto-load-anchor.js";
+    // AutoLoadAnchorオブジェクトをオプションつきで作成する。
+    let obj = new AutoLoadAnchor({
+      // 表示起点の対象になる要素をセレクタで指定する。
+      anchorSelector: '.topic',
+      // そのセレクタの対象要素が画面内に表示された際に実行する関数を設定する。
+      func: (target) => {
+        target.classList.remove('hidden');
+      },
+      // ページ表示時に表示されている要素に対して直ちに関数を実行する場合はtrue。指定しないとスクロールイベントだけを判定対象にする。
+      runImmediate: true,
+      // 要素の上端、下端どちらを表示した時点で関数を実行するかを指定する。"top"か"bottom"で指定。
+      anchorPoint: "bottom",
+      // アンカーの表示位置をずらしたい場合に数値で指定。プラスで指定するほど下側へ判定座標がずれていく。
+      gap: 0,
+    })
+  </script>
+
+</body>
+</html>
