@@ -17,26 +17,32 @@
     .topic *{
       transition: all 1s ease;
     }
-    .topic.hidden{
-      opacity: 0;
+    .topic .topic--img{
+      transform: translateX(0);
+      transition-delay: 0s;
+      opacity: 1;
     }
     .topic.hidden div.topic--img{
       transform: translateX(-50vh);
-    }
-    .topic .topic--img{
-      transform: translateX(0);
-    }
-    .topic.hidden div.topic--text h2{
-      transform: translateX(50vh);
+      opacity: 0;
     }
     .topic .topic--text h2{
       transform: translateX(0);
+      transition-delay: 1s;
+      opacity: 1;
     }
-    .topic.hidden div.topic--text p{
-      transform: translateY(50vh);
+    .topic.hidden div.topic--text h2{
+      transform: translateX(50vh);
+      opacity: 0;
     }
     .topic .topic--text p{
       transform: translateY(0);
+      transition-delay: 2s;
+      opacity: 1;
+    }
+    .topic.hidden div.topic--text p{
+      transform: translateY(50vh);
+      opacity: 0;
     }
   </style>
 </head>
