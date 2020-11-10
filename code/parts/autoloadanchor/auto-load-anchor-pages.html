@@ -5,44 +5,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+    .anchor{
+      width: 100%;
+      height: 50vh;
+    }
     .topic{
-      width: 1200px;
+      width: 100%;
       margin: 0 auto;
       display: flex;
       transition: all 1s ease;
+      overflow: hidden;
     }
     .topic div{
       margin: 24px;
     }
     .topic *{
-      transition: all 1s ease;
+      transition: all 0.5s ease;
     }
     .topic .topic--img{
       transform: translateX(0);
       transition-delay: 0s;
       opacity: 1;
     }
-    .topic.hidden div.topic--img{
-      transform: translateX(-50vh);
+    .topic div.topic--img.hidden{
+      transform: translateX(-20vh);
       opacity: 0;
+    }
+    .topic--img img{
+      width: 400px;
+      height: 300px;
     }
     .topic .topic--text h2{
       transform: translateX(0);
-      transition-delay: 1s;
+      transition-delay: 0.25s;
       opacity: 1;
     }
-    .topic.hidden div.topic--text h2{
-      transform: translateX(50vh);
+    .topic div.topic--text h2.hidden{
+      transform: translateX(20vh);
       opacity: 0;
     }
     .topic .topic--text p{
       transform: translateY(0);
-      transition-delay: 2s;
+      transition-delay: 0.5s;
       opacity: 1;
     }
-    .topic.hidden div.topic--text p{
-      transform: translateY(50vh);
+    .topic div.topic--text p.hidden{
+      transform: translateY(20vh);
       opacity: 0;
+    }
+    @media screen and (max-width: 768px){
+      .anchor{
+        height: auto;
+      }
+      .topic{
+        flex-wrap: wrap;
+      }
+      .topic--img{
+        width: 100%;
+      }
+      .topic--img img{
+        width: 100%;
+        height: auto;
+      }
     }
   </style>
 </head>
@@ -51,61 +75,62 @@
     トップページ
   </div>
   <p>最初は隠れているが領域の一番下までスクロールすると表示されるコンテンツ</p>
-  <div class="anchor" style="width: 100%; height: 50vh; background-color: #955;">
-    <div class="topic hidden">
-      <div class="topic--img">
-        <img src="https://picsum.photos/400/400">
+  <div class="anchor" style="background-color: #955;">
+    <div class="topic">
+      <div class="topic--img hidden">
+        <img src="./panda.jpg">
       </div>
       <div class="topic--text">
-        <h2>深海魚</h2>
-        <p>深海魚は、深海に生息する魚類の総称。一般に、水深200mより深い海域に住む魚類を深海魚と呼んでいる。ただし、成長の過程で生息深度を変える種類や、餌を求めて大きな垂直移動を行う魚類も多く、「深海魚」という用語に明確な定義が存在するわけではない。</p>
+        <h2 class="hidden">深海魚</h2>
+        <p class="hidden">深海魚は、深海に生息する魚類の総称。一般に、水深200mより深い海域に住む魚類を深海魚と呼んでいる。ただし、成長の過程で生息深度を変える種類や、餌を求めて大きな垂直移動を行う魚類も多く、「深海魚」という用語に明確な定義が存在するわけではない。</p>
       </div>
     </div>
   </div>
-  <div class="anchor" style="width: 100%; height: 50vh; background-color: #559;">
-    <div class="topic hidden">
-      <div class="topic--img">
-        <img src="https://picsum.photos/400/400">
+  <div class="anchor" style="background-color: #559;">
+    <div class="topic">
+      <div class="topic--img hidden">
+        <img src="./panda.jpg">
       </div>
       <div class="topic--text">
-        <h2>深海魚</h2>
-        <p>深海魚は、深海に生息する魚類の総称。一般に、水深200mより深い海域に住む魚類を深海魚と呼んでいる。ただし、成長の過程で生息深度を変える種類や、餌を求めて大きな垂直移動を行う魚類も多く、「深海魚」という用語に明確な定義が存在するわけではない。</p>
+        <h2 class="hidden">深海魚</h2>
+        <p class="hidden">深海魚は、深海に生息する魚類の総称。一般に、水深200mより深い海域に住む魚類を深海魚と呼んでいる。ただし、成長の過程で生息深度を変える種類や、餌を求めて大きな垂直移動を行う魚類も多く、「深海魚」という用語に明確な定義が存在するわけではない。</p>
       </div>
     </div>
   </div>
-  <div class="anchor" style="width: 100%; height: 50vh; background-color: #995;">
-    <div class="topic hidden">
-      <div class="topic--img">
-        <img src="https://picsum.photos/400/400">
+  <div class="anchor" style="background-color: #995;">
+    <div class="topic">
+      <div class="topic--img hidden">
+        <img src="./panda.jpg">
       </div>
       <div class="topic--text">
-        <h2>深海魚</h2>
-        <p>深海魚は、深海に生息する魚類の総称。一般に、水深200mより深い海域に住む魚類を深海魚と呼んでいる。ただし、成長の過程で生息深度を変える種類や、餌を求めて大きな垂直移動を行う魚類も多く、「深海魚」という用語に明確な定義が存在するわけではない。</p>
+        <h2 class="hidden">深海魚</h2>
+        <p class="hidden">深海魚は、深海に生息する魚類の総称。一般に、水深200mより深い海域に住む魚類を深海魚と呼んでいる。ただし、成長の過程で生息深度を変える種類や、餌を求めて大きな垂直移動を行う魚類も多く、「深海魚」という用語に明確な定義が存在するわけではない。</p>
       </div>
     </div>
   </div>
-  <div class="anchor" style="width: 100%; height: 50vh; background-color: #599;">
-    <div class="topic hidden">
-      <div class="topic--img">
-        <img src="https://picsum.photos/400/400">
+  <div class="anchor" style="background-color: #599;">
+    <div class="topic">
+      <div class="topic--img hidden">
+        <img src="./panda.jpg">
       </div>
       <div class="topic--text">
-        <h2>深海魚</h2>
-        <p>深海魚は、深海に生息する魚類の総称。一般に、水深200mより深い海域に住む魚類を深海魚と呼んでいる。ただし、成長の過程で生息深度を変える種類や、餌を求めて大きな垂直移動を行う魚類も多く、「深海魚」という用語に明確な定義が存在するわけではない。</p>
+        <h2 class="hidden">深海魚</h2>
+        <p class="hidden">深海魚は、深海に生息する魚類の総称。一般に、水深200mより深い海域に住む魚類を深海魚と呼んでいる。ただし、成長の過程で生息深度を変える種類や、餌を求めて大きな垂直移動を行う魚類も多く、「深海魚」という用語に明確な定義が存在するわけではない。</p>
       </div>
     </div>
   </div>
   <div style="width:100%; height: 50vh; background-color:#395">
     フッタ
   </div>
-  <script type="module">
+  <script src="./auto-load-anchor.js"></script>
+  <script>
     // 使い方
     // 1.モジュールをimportする。
-    import AutoLoadAnchor from "./auto-load-anchor.js";
+    // import AutoLoadAnchor from "./auto-load-anchor.js";
     // AutoLoadAnchorオブジェクトをオプションつきで作成する。
-    let obj = new AutoLoadAnchor({
+    let obj = AutoLoadAnchor({
       // 表示起点の対象になる要素をセレクタで指定する。
-      anchorSelector: '.topic',
+      anchorSelector: '.hidden',
       // そのセレクタの対象要素が画面内に表示された際に実行する関数を設定する。
       func: (target) => {
         target.classList.remove('hidden');
@@ -113,10 +138,16 @@
       // ページ表示時に表示されている要素に対して直ちに関数を実行する場合はtrue。指定しないとスクロールイベントだけを判定対象にする。
       runImmediate: true,
       // 要素の上端、下端どちらを表示した時点で関数を実行するかを指定する。"top"か"bottom"で指定。
-      anchorPoint: "bottom",
+      anchorPoint: "top",
       // アンカーの表示位置をずらしたい場合に数値で指定。プラスで指定するほど下側へ判定座標がずれていく。
       gap: 0,
+      // 当該要素で一度関数が実行されたら再び条件を満たしても再実行するかどうか
+      fireOnce: true,
     })
+    // stopメソッドで一時的に動作を止めることができる
+    obj.stop();
+    // restartメソッドで一時停止を解除できる。
+    obj.restart();
   </script>
 
 </body>

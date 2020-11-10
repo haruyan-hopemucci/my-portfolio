@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div style="height: 150vh; background-color: burlywood;">
+    <p>150vh高さの領域</p>
+    <p>スクリプト：</p>
+    <pre>
+        AutoLoadAnchor(
+          {
+            anchorSelector: '.anchor',
+            func: () => {
+              alert('ターゲットが表示されました！');
+            }
+          }
+        );
+    </pre>
+  </div>
+  <div class="anchor" style="height:50vh; background-color: tomato; color: white">
+    この領域が表示されたら関数が実行されます。
+  </div>
+  <script src="./auto-load-anchor.js"></script>
+  <script>
+    AutoLoadAnchor(
+      {
+        anchorSelector: '.anchor',
+        func: () => {
+          alert('ターゲットが表示されました！');
+        }
+      }
+    );
+  </script>
+</body>
+</html>
