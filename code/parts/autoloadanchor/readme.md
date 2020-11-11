@@ -5,9 +5,9 @@
 ## Getting Started
 
 ```javascript
-  <script type="module">
-    import AutoLoadAnchor from "./auto-load-anchor.js";
-    let obj = new AutoLoadAnchor({
+  <script src="./auto-load-anchor.js"></script>
+  <script>
+    let obj = AutoLoadAnchor({
       // 表示起点の対象になる要素をセレクタで指定する。
       anchorSelector: '.topic',
       // そのセレクタの対象要素が画面内に表示された際に実行する関数を設定する。
@@ -23,12 +23,13 @@
 デフォルト：
 ```javascript
 
-new AutoLoadAnchor({
+AutoLoadAnchor({
   anchorSelector: required,
   func: required,
   runImmediate: true,
   anchorPoint: "top",
   gap: 0,
+  fireOnce: true,
 });
 
 ```
