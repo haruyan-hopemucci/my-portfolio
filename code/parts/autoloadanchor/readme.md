@@ -61,7 +61,7 @@ AutoLoadAnchor({
 ```html
   <script src="./auto-load-anchor.js"></script>
   <script>
-    AutoLoadAnchor(
+    new AutoLoadAnchor(
       {
         anchorSelector: '.anchor',
         func: () => {
@@ -95,7 +95,7 @@ htmlを次の様に記載してください。
 ```html
   <script src="./auto-load-anchor.js"></script>
   <script>
-    AutoLoadAnchor(
+    new AutoLoadAnchor(
       {
         anchorSelector: '.anchor',
         func: (target) => {
@@ -142,7 +142,7 @@ html部分
 ```html
   <script src="./auto-load-anchor.js"></script>
   <script>
-    AutoLoadAnchor(
+    new AutoLoadAnchor(
       {
         anchorSelector: '.anchor',
         anchorPoint: "bottom",  // 表示対象ポイントを下端に設定

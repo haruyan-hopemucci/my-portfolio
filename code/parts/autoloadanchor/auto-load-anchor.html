@@ -21,9 +21,8 @@
     </li>
   </template>
 
-  <script type="module">
-
-import AutoLoadAnchor from "./auto-load-anchor.js"
+  <script src="./auto-load-anchor.js"></script>
+  <script>
 
 var loadsOnce = 10;
 var maxLoads = 500;
@@ -59,6 +58,7 @@ function invokeAddContents(){
   var obj = new AutoLoadAnchor({
     anchorSelector: 'p.auto-load-anchorpoint',
     func: invokeAddContents,
+    fireOnce: false,
   })
 
   </script>

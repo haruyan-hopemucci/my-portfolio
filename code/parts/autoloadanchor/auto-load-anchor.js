@@ -6,6 +6,7 @@
  * create: 2020.10.14
  * 
  * changelog:(above is newer)
+ *  v0.1.3 2020.11.23  : 実行済み判定の不具合修正
  *  v0.1.3 2020.11.11  : クラス形式から関数形式へ変更。fireOnce追加。
  *  v0.1.2 2020.10.30  : add setting param: gap, anchorPoint.
  *  v0.1.1 2020.10.15  : add 1 argment of func when called.
@@ -23,7 +24,7 @@ function AutoLoadAnchor(settings){
       let targets = document.querySelectorAll(this.anchorSelector);
       for(let target of targets){
         // 実行済み判定
-        if(this.fireOnce && target.dataset.autoLoadAnchorFired === "1") return;
+        if(this.fireOnce && target.dataset.autoLoadAnchorFired === "1") continue;
         // console.dir(target);
         // 表示されているウィンドウ領域の座標判定
         let wtop = window.scrollY;  // 現ウィンドウのtop位置がドキュメント全体のどの位置か
