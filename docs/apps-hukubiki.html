@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrap cdns -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <!-- main -->
+    <script src="./apps/hukubiki/main.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>フクビキレンキン</title>
+</head>
+<body>
+    <header class="">
+        <nav class="navbar navbar-expand-md navbar-light">
+            <div class="navbar-brand navicon"></div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html#top">Top</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html#profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html#table-of-contents">Contents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html#link">Link</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        <h1 class="undermarker">フクビキレンキン</h1>
+        <h2>概要</h2>
+        <p class="lead">
+            このページは<a href="https://www.jp.square-enix.com/dqsp/dq2/" target="_blank">スマートフォン版ドラゴンクエストII</a>において、ふくびきけん取得のメカニズムを利用して所持金を無限に増やす方法を提示するサイトです。
+        </p>
+        <details>
+            <summary>利用方法</summary>
+            <h3>下準備</h3>
+            <ol>
+                <li>「やくそう」「どくけしそう」「キメラのつばさ」が販売されている道具屋へ行きます。ローレシア城以外の道具屋であれば大丈夫です。</li>
+                <li>先頭のキャラクター（ローレシアの王子）の所持アイテムを「やくそう」1つだけにします。<br>
+                余分なアイテムは預かり所か仲間に持たせます。
+                </li>
+                <li>「所持金」ボックスに現在の所持金を入力します。</li>
+                <li>「スタート」ボタンをクリックすると、所持金を増やすことのできる売買方法が表示されます。</li>
+                <li>表のとおりにアイテムを購入します。アイテムの所持者は必ず先頭のローレシア王子にします。表のとおりに売買すれば所持金が増え、所持アイテムがやくそう1つにに戻ります。</li>
+                <li>所持金ボックスには自動的に売買後の金額が入っています。もう一度スタートをクリックするとさらに売買方法を表示させることができます。</li>
+                <li>以上を繰り返すことで無限に所持金を増やすことが可能です。</li>
+            </ol>
+        </details>
+        <details>
+            <summary>フクビキレンキンの仕組み</summary>
+            <p>ふくびきけんは以下の条件にすべて当てはまった場合におまけとして入手できます。</p>
+            <ul>
+                <li>道具屋でアイテムを購入する。</li>
+                <li>購入後所持金の各桁の数字を合計した値が5の倍数であること。</li>
+                <li>購入後のアイテムを所持したキャラクターの所持品数が購入品を含めて7以下であること</li>
+            </ul>
+            <p>つまり、アイテムの所持数を少な目に調整しつつ、アイテム購入後の所持金の数字合計が5の倍数になるよう調整すればふくびきけんを必ず入手できます。ふくびきけんは53Gで売却できるので、金額調整が53G以内で収まれば収支プラスにすることが可能です。</p>
+            <p>
+                ふくびきけんで所持金増殖が簡単に可能なもう一つの要因として、特定のアイテム売買価格が挙げられます。
+            </p>
+            <p>
+                ドラゴンクエストIIでは基本的にすべてのアイテムの売却価格は購入価格の75%（端数切捨て）となっておりますが、一部の消耗品はこの計算式通りになっていません。
+            </p>
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th>アイテム名</th>
+                        <th>買値</th>
+                        <th>売値</th>
+                        <th>備考</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>キメラのつばさ</td>
+                        <td>25</td>
+                        <td>20</td>
+                        <td>売却金でせいすい1つ又はどくけしそう2つ購入可能</td>
+                    </tr>
+                    <tr>
+                        <td>せいすい</td>
+                        <td>20</td>
+                        <td>10</td>
+                        <td>売却金でどくけしそう1つ購入可能</td>
+                    </tr>
+                    <tr>
+                        <td>どくけしそう</td>
+                        <td>10</td>
+                        <td>8</td>
+                        <td>売却金でやくそう1つ購入可能</td>
+                    </tr>
+                    <tr>
+                        <td>やくそう</td>
+                        <td>8</td>
+                        <td>4</td>
+                        <td>2つ売却でやくそう1つ購入可能</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+                この表から、上記4種類のアイテムを購入した場合、それを売却して備考の商品を買いなおせば購入後の所持金が同一になります。商品購入後にふくびきけんを入手できる条件となる所持金となった場合も同様に買ったアイテムを売却し、備考の通り商品を買いなおせばまた同じ所持金となり、ふくびきけんも同様に入手できます。<br>
+                所持数上限の条件があるので無限に入手はできませんが、アイテム所持の初期状態を調整し、最初に購入する物品を上記表のものに限定すれば所持数上限に引っ掛かることなく効率的にふくびきけんを入手することが可能になっています。<br>
+                本ページは、この売買をなるべく簡素化し難しい計算をせずにすむようなパターンを提示することで楽に所持金増殖をできるようにしたものです。
+            </p>
+            <p>
+                このページの計算方法では所持品上限を超えないような初期売買パターンを提示していますが、初期所持金によってはそのようなパターンが存在しないことがあります。その場合はやくそうを1つ売買して所持金を4G減らしたうえで再度売買パターンを探索します。10万Gまで総当たりしましたが、所持金を4G減らした状態でもなお売買可能なパターンが見つからない事例は存在しませんでした。
+            </p>
+            <p>
+                私見ですが、これらのアイテムの売買金額は意図的に上記の様に調整されていると考えています。つまり道具の売買で簡単にふくびきけんが入手できるのは大っぴらな仕様です。決してインチキにあらず。
+            </p>
+        </details>
+        <label for="gold">所持金</label><input type="number" id="gold" name="gold" value="42">
+        <button onclick="main()">スタート</button>
+        <table id="op-list" class="table">
+            <thead>
+                <tr>
+                    <th>売/買</th>
+                    <th>対象アイテム</th>
+                    <th>買値</th>
+                    <th>売値</th>
+                    <th>残金</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <section>
+            <h2>参考サイト</h2>
+            <cite>
+                <a href="https://wikiwiki.jp/dqdic3rd/%E3%80%90%E3%81%B5%E3%81%8F%E3%81%B3%E3%81%8D%E3%81%91%E3%82%93%E3%80%91#wa9a27b5">【ふくびきけん】- ドラゴンクエスト大辞典を作ろうぜ！！第三版wiki</a>
+            </cite>
+        </section>
+    </main>
+
+        <template id="template-row">
+            <tr>
+                <td class="op"></td>
+                <td class="item-name"></td>
+                <td class="buyp"></td>
+                <td class="sellp"></td>
+                <td class="bl"></td>
+            </tr>
+        </template>
+        <footer id="footer" class="d-flex justify-content-center align-items-center container-fluid">
+            <p>©copyrights haruyan-hopemucci.</p>
+        </footer>
+    
+</body>
+</html>

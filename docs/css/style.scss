@@ -71,9 +71,6 @@ header{
     }
 }
 
-main{
-}
-
 section{
     margin-top: 2em;
     padding-top: 56px;
@@ -85,7 +82,11 @@ section{
     background-size: contain;
 }
 
-
+div.history{
+    overflow-y: auto;
+    max-height: 10em;
+    padding-left: 1em;
+}
 
 footer{
     position: sticky;

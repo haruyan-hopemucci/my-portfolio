@@ -65,6 +65,12 @@ header .navicon, section#title .topicon {
   background-size: contain;
 }
 
+div.history {
+  overflow-y: auto;
+  max-height: 10em;
+  padding-left: 1em;
+}
+
 footer {
   position: -webkit-sticky;
   position: sticky;
