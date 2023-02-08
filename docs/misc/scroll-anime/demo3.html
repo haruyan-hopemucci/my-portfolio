@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <style>
+        html *{
+            font-family: 'Zen Maru Gothic', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header{
+            height: 2400px;
+            background-color: #ddd;
+        }
+        footer{
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 20svh;
+            background-color: blue;
+            opacity: 0;
+        }
+        .sticky-inner{
+            position: sticky;
+            top: 0;
+            left: 0;
+            height: 100svh;
+            width: 100%;
+            background-image: url(panda.jpg);
+            background-size: cover;
+            background-position: center;
+        }
+        .first{
+            height: 100vh;
+            font-size: 8svw;
+            font-weight: 900;
+        }
+        .center-middle{
+            display: grid;
+            place-items: center; 
+       }
+       .sticky-container{
+        height: 2400px;
+       }
+       .sticky-inner .panda-name{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        display: inline-block;
+        font-size: 8svw;
+        font-weight: 900;
+        color: white;
+       }
+       .panda-name{
+        text-shadow: 0 0 1svw black;
+       }
+    </style>
+    <main>
+        <section class="first center-middle">
+            <div>感動をありがとう</div>
+        </section>
+        <section class="sticky-container">
+            <div class="sticky-inner" style="background-image: url(panda-xiang.jpg);">
+                <span class="panda-name">シャンシャン</span>
+            </div>
+        </section>
+        <section class="sticky-container">
+            <div class="sticky-inner" style="background-image: url(panda-eimei.jpg);">
+                <span class="panda-name">永明</span>
+            </div>
+        </section>
+        <section class="sticky-container">
+            <div class="sticky-inner" style="background-image: url(panda-ouhin.jpg);">
+                <span class="panda-name" style="color: black; text-shadow: 0 0 1svw white;">桜浜</span>
+            </div>
+        </section>
+        <section class="sticky-container">
+            <div class="sticky-inner" style="background-image: url(panda-touhin.jpg);">
+                <span class="panda-name">桃浜</span>
+            </div>
+        </section>
+        <section class="first center-middle">
+            <div>いつまでも元気で。</div>
+        </section>
+    </main>
+    <footer id="footer"></footer>
+    <script>
+        window.addEventListener('scroll', event => {
+            const elems = document.querySelectorAll(".sticky-container");
+            elems.forEach((elem,i) => {
+                const elemInner = elem.querySelector(".sticky-inner");
+                const elemName = elem.querySelector(".panda-name");
+                elemInner.style.opacity = Math.abs(Math.min(0,elem.getBoundingClientRect().top))/(elem.clientHeight-window.innerHeight);
+                elemName.style.bottom = `${Math.min(Math.abs(Math.min(0,elem.getBoundingClientRect().top))/(elem.clientHeight-window.innerHeight)*100,80)}%`;
+            })
+        });
+        const scrollLoop = () => {
+            window.scrollBy(0,2);
+            setTimeout(scrollLoop,10);
+        }
+        window.onload = () => {
+            window.scrollTo(0,0);
+            setTimeout(scrollLoop,5*1000);
+        }
+
+    </script>
+</body>
+</html>
