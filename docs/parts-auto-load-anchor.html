@@ -52,19 +52,20 @@
 
           <h1>無限スクロールロードライブラリ</h1>
 
-          <a href="https://github.com/haruyan-hopemucci/my-portfolio/tree/master/code/parts/autoloadanchor" target="_blank">view source code</a>
+          <a href="https://github.com/haruyan-hopemucci/fanchor" target="_blank">view repository</a>
       <section>
         <h2>利用方法</h2>
-        <p>上記リンク view source code からgithubのページへアクセスし、<pre>auto-load-anchor.js</pre>をダウンロードし、htmlファイルからアクセスできる場所へ配置してください。</p>
+        <p>上記リンク view repository からgithubのページへアクセスし、<pre>modules/fanchor.js</pre>をダウンロードし、htmlファイルからアクセスできる場所へ配置してください。</p>
         <p>以下のコードで初期処理を行います。</p>
         <pre><code>
 &lt;script type="module"&gt;
   // import文でライブラリをロードする
-  import AutoLoadAnchor from "./js/auto-load-anchor.js"
-  // autoLoadAnchor設定
-  var obj = new AutoLoadAnchor({
+  import Fanchor from "./js/fanchor.js"
+  // Fancor 設定
+  const obj = Fanchor({
     anchorSelector: '.anchor',  // このセレクタで表現される要素が画面上に現れた際に下記funcを実行する
     func: someFunction,         // セレクタの要素が画面に表示された際に実行される関数
+    fireOnce: false,            // アンカー要素が画面に現れるたびに関数を実行するオプション
   });
   
   // セレクタの要素が画面に表示された際に実行される関数の実装
