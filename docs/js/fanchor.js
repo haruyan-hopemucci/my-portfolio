@@ -85,3 +85,5 @@ function Fanchor(settings) {
   };
 
 }
+
+export default Fanchor;
